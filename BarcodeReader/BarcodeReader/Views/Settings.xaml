@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarcodeReader.Views.Settings">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#ab66ea"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DimGray">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Сервер" FontSize="Large" TextColor="#ab66ea"/>
+                <Entry x:Name="Server" Text="{Binding Path=Server}" WidthRequest="150" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Пользователь" FontSize="Large" TextColor="#ab66ea"/>
+                <Entry x:Name="User" Text="{Binding Path=User}" WidthRequest="150"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Пароль" FontSize="Large" TextColor="#ab66ea"/>
+                <Entry x:Name="Password" Text="{Binding Path=Password}" WidthRequest="150" />
+            </StackLayout>
+            <Button Text="Сохранить" WidthRequest="230" Margin="5,5,5,5" HorizontalOptions="Center"
+                    Style="{StaticResource buttonStyle}" Clicked="SaveSettings" HeightRequest="60"></Button>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

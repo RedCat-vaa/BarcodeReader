@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="BarcodeReader.Views.ScannerPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#ab66ea"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.75*"/>
+        </Grid.RowDefinitions>
+        <zxing:ZXingScannerView x:Name="zxing"
+                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" OnScanResult="Scanhandler"  HeightRequest="100" WidthRequest="200"/>
+        <zxing:ZXingDefaultOverlay TopText="Поднесите ваш телефон к штрихкоду"
+                                   BottomText="Сканирование произойдет автоматически"/>
+        <Label x:Name="lblResult"
+               Grid.Row="1"
+               TextColor="#ab66ea"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+        <Button Grid.Row="2" Text="Закрыть" Clicked="Button_Clicked"  Margin="5,5,5,5" HorizontalOptions="Center"
+                    WidthRequest="230" Style="{StaticResource buttonStyle}" HeightRequest="60"/>
+    </Grid>
+</ContentPage>

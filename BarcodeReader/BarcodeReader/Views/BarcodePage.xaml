@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarcodeReader.Views.BarcodePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#ab66ea"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="DimGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Row="0" Grid.ColumnSpan="2" x:Name="ListBarcode" ItemsSource="{Binding BarcodeList}" 
+                      SeparatorVisibility="Default" SeparatorColor="#ab66ea">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation ="Horizontal">
+                                <Label Text="{Binding Code}" FontSize="18" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="1" Grid.Column="0" Text="Сканировать" Clicked="ScanBarcode" Margin="5,5,5,5" HorizontalOptions="Center"
+                    WidthRequest="180" Style="{StaticResource buttonStyle}" HeightRequest="50"/>
+        <Button Grid.Row="1" Grid.Column="1" Text="Удалить" Clicked="DeleteBarcode" Margin="5,5,5,5" HorizontalOptions="Center"
+                    WidthRequest="180" Style="{StaticResource buttonStyle}" HeightRequest="50"/>
+        <Button Grid.Row="2" Grid.Column="0" Text="Сохранить" Clicked="SendBarcode" Margin="5,5,5,5" HorizontalOptions="Center"
+                    WidthRequest="180" Style="{StaticResource buttonStyle}" HeightRequest="50"/>
+    </Grid>
+</ContentPage>
