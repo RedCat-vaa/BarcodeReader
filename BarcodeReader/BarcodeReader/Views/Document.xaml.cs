@@ -60,7 +60,7 @@ namespace BarcodeReader.Views
             await DisplayAlert("Уведомление",message, "ОК");
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             try
             {
@@ -77,6 +77,11 @@ namespace BarcodeReader.Views
             }
             
             base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
 
         private async void Send(object sender, EventArgs e)
@@ -123,40 +128,6 @@ namespace BarcodeReader.Views
 
                 await DisplayAlert("Уведомление", "Документ отправлен", "OK");
             }
-
-            /*
-
-            if (BarcodeList.Count == 0)
-            {
-                return;
-            }
-
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string filename = Convert.ToString(DateTime.Now).Replace(" ", "").Replace(".", "").Replace(":", "") + ".txt";
-            string textcode = "";
-            try
-            {
-                var client = new FtpClient(Preferences.Get("Server", ""), Preferences.Get("User", ""), Preferences.Get("Password", ""));
-                client.Connect();
-
-                foreach (Barcodes br in BarcodeList)
-                {
-                    textcode += br.Code + ";";
-                }
-
-                // перезаписываем файл
-                File.WriteAllText(Path.Combine(folderPath, filename), textcode);
-
-                client.UploadFile(Path.Combine(folderPath, filename), "/" + filename);
-
-                File.Delete(Path.Combine(folderPath, filename));
-
-                client.Disconnect();
-                await Navigation.PopAsync();
-            }
-            catch (Exception ex)
-            {
-            }*/
         }
     }
 }

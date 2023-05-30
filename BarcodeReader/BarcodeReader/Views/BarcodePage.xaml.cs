@@ -54,6 +54,11 @@ namespace BarcodeReader.Views
             base.OnAppearing();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
+
 
         private async void ScanBarcode(object sender, EventArgs e)
         {

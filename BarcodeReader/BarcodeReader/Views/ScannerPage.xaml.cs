@@ -30,12 +30,13 @@ namespace BarcodeReader.Views
 
         void Scanhandler(ZXing.Result result)
         {
-
-            Device.BeginInvokeOnMainThread(() =>
+            if (ScanAvailable)
             {
-                if (ScanAvailable)
+                ScanAvailable = false;
+
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    ScanAvailable = false;
+
                     if (result.Text.Length < 13)
                     {
                         return;
@@ -45,10 +46,11 @@ namespace BarcodeReader.Views
                     Barcodes bar = new Barcodes { Code = result.Text, docId = CurrentDoc.Id };
                     BarcodeList.Add(bar);
                     bar.Id = App.Database.CreateBar(bar);
-                    Thread.Sleep(2000);
-                    ScanAvailable = true;
-                }
-            });
+
+                });
+                Thread.Sleep(2000);
+                ScanAvailable = true;
+            }
         }
 
         protected override void OnAppearing()
